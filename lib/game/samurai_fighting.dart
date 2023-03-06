@@ -1,12 +1,15 @@
 import 'dart:async';
 
 import 'package:flame/game.dart';
+import 'package:samurai_fighting/hud/alert.dart';
 
 import 'package:samurai_fighting/hud/background.dart';
 
 class SamuraiFighting extends FlameGame
     with HasDraggables, HasTappables, HasCollisionDetection {
   Background? background;
+  AlertMessage? alertMessage;
+  bool isGameDone = false;
   @override
   Future<void> onLoad() async {
     await super.onLoad();
@@ -28,5 +31,6 @@ class SamuraiFighting extends FlameGame
   /// Initiate game components
   void _initComponent() {
     background ??= Background();
+    alertMessage ??= AlertMessage();
   }
 }
