@@ -1,0 +1,18 @@
+enum PlayerState {
+  idle,
+  running,
+  jumping,
+  falling,
+  attack1,
+  attack2,
+  takeHit,
+  death,
+  idleFlipped,
+  runningFlipped,
+  jumpingFlipped,
+  fallingFlipped,
+  attack1Flipped,
+  attack2Flipped,
+  takeHitFlipped,
+  deathFlipped,
+}
