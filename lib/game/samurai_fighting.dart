@@ -4,11 +4,13 @@ import 'package:flame/game.dart';
 import 'package:samurai_fighting/hud/alert.dart';
 
 import 'package:samurai_fighting/hud/background.dart';
+import 'package:samurai_fighting/hud/reset_button.dart';
 
 class SamuraiFighting extends FlameGame
     with HasDraggables, HasTappables, HasCollisionDetection {
   Background? background;
   AlertMessage? alertMessage;
+  ResetButton? resetButton;
   bool isGameDone = false;
   @override
   Future<void> onLoad() async {
@@ -32,5 +34,6 @@ class SamuraiFighting extends FlameGame
   void _initComponent() {
     background ??= Background();
     alertMessage ??= AlertMessage();
+    resetButton ??= ResetButton();
   }
 }

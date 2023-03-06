@@ -118,6 +118,7 @@ class Player extends SpriteAnimationComponent
             gameRef.alertMessage!.message = "$opponentName WINS!";
             gameRef.alertMessage!.textPosition = Vector2(34, 12);
             gameRef.add(gameRef.alertMessage!);
+            gameRef.add(gameRef.resetButton!);
             gameRef.isGameDone = true;
           } else {
             updateAnimation(PlayerState.idle);
