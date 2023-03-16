@@ -7,6 +7,7 @@ import 'package:samurai_fighting/hud/background.dart';
 import 'package:samurai_fighting/hud/health_bar.dart';
 import 'package:samurai_fighting/hud/health_bar_background.dart';
 import 'package:samurai_fighting/hud/reset_button.dart';
+import 'package:samurai_fighting/hud/timer.dart';
 import 'package:samurai_fighting/players/kenji.dart';
 import 'package:samurai_fighting/players/mack.dart';
 
@@ -21,6 +22,7 @@ class SamuraiFighting extends FlameGame
   HealthBarBackground? kenjiHealthBarBackground;
   HealthBar? mackHealthBar;
   HealthBarBackground? mackHealthBarBackground;
+  AppTimer? timer;
 
   bool isGameDone = false;
 
@@ -36,6 +38,7 @@ class SamuraiFighting extends FlameGame
     add(kenjiHealthBar!);
     add(mackHealthBarBackground!);
     add(mackHealthBar!);
+    add(timer!);
   }
 
   /// Resize components that are dependable on size of the page
@@ -57,6 +60,7 @@ class SamuraiFighting extends FlameGame
       17.5,
     );
     mackHealthBarBackground!.position = Vector2(canvasSize.x + 27.5, 17.5);
+    timer!.position = Vector2((canvasSize.x / 2) - 30, 15);
   }
 
   /// Initiate game components
@@ -70,5 +74,6 @@ class SamuraiFighting extends FlameGame
     kenjiHealthBarBackground ??= HealthBarBackground(player: kenji!);
     mackHealthBar ??= HealthBar(player: mack!);
     mackHealthBarBackground ??= HealthBarBackground(player: mack!);
+    timer ??= AppTimer();
   }
 }
