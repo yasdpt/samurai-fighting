@@ -1,8 +1,12 @@
 import 'dart:async';
 
+import 'package:flame/components.dart';
 import 'package:flame/game.dart';
-import 'package:samurai_fighting/hud/alert.dart';
+import 'package:flame/palette.dart';
+import 'package:flutter/widgets.dart';
 
+import 'package:samurai_fighting/hud/action_button.dart';
+import 'package:samurai_fighting/hud/alert.dart';
 import 'package:samurai_fighting/hud/background.dart';
 import 'package:samurai_fighting/hud/health_bar.dart';
 import 'package:samurai_fighting/hud/health_bar_background.dart';
@@ -23,8 +27,12 @@ class SamuraiFighting extends FlameGame
   HealthBar? mackHealthBar;
   HealthBarBackground? mackHealthBarBackground;
   AppTimer? timer;
+  JoystickComponent? joystickKenji;
+  JoystickComponent? joystickMack;
 
   bool isGameDone = false;
+  final knobPaint = BasicPalette.black.withAlpha(200).paint();
+  final backgroundPaint = BasicPalette.black.withAlpha(100).paint();
 
   @override
   Future<void> onLoad() async {
@@ -39,6 +47,8 @@ class SamuraiFighting extends FlameGame
     add(mackHealthBarBackground!);
     add(mackHealthBar!);
     add(timer!);
+    add(joystickMack!);
+    add(joystickKenji!);
   }
 
   /// Resize components that are dependable on size of the page
@@ -61,6 +71,7 @@ class SamuraiFighting extends FlameGame
     );
     mackHealthBarBackground!.position = Vector2(canvasSize.x + 27.5, 17.5);
     timer!.position = Vector2((canvasSize.x / 2) - 30, 15);
+    joystickKenji!.position = Vector2(canvasSize.x, canvasSize.y);
   }
 
   /// Initiate game components
@@ -75,5 +86,18 @@ class SamuraiFighting extends FlameGame
     mackHealthBar ??= HealthBar(player: mack!);
     mackHealthBarBackground ??= HealthBarBackground(player: mack!);
     timer ??= AppTimer();
+
+    joystickKenji ??= JoystickComponent(
+      knob: CircleComponent(radius: 15, paint: knobPaint),
+      background: CircleComponent(radius: 50, paint: backgroundPaint),
+      margin: const EdgeInsets.only(right: 20, bottom: 20),
+      position: Vector2(size.x, size.y),
+    );
+
+    joystickMack ??= JoystickComponent(
+      knob: CircleComponent(radius: 15, paint: knobPaint),
+      background: CircleComponent(radius: 50, paint: backgroundPaint),
+      margin: const EdgeInsets.only(left: 20, bottom: 20),
+    );
   }
 }
